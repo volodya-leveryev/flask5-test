@@ -12,11 +12,12 @@ class Post(db.Model):
     title = db.Column(db.String(100), nullable=False)
     text = db.Column(db.Text(), nullable=False)
     created = db.Column(db.Date())
+    comments = db.relationship('Comment', back_populates='post')
 
-    def __str__(self):
-        return self.title
 
-    # def __init__(self, *args, **kwargs):
-    #     if not self.created:
-    #         self.created = date.today()
-    #     super(self).__init__(*args, **kwargs)
+class Comment(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    text = db.Column(db.Text(), nullable=False)
+    author = db.Column(db.String(50), nullable=False)
+    post_id = db.Column(db.Integer(), db.ForeignKey('post.id', name='Post'))
+    post = db.relationship('Post', back_populates='comments')

@@ -2,6 +2,28 @@
 
 {% block content %}
 <h1>{{ post.title }}</h1>
+
 <h5>{{ post.created }}</h5>
+
 <p>{{ post.text }}</p>
+
+<h5>Коментарии</h5>
+
+{% for c in post.comments %}
+<p>{{ c.text }}</p>
+{% endfor %}
+
+<form method="POST">
+    <h5>Введите ваш комментарий</h5>
+    {{ form.csrf_token }}
+    <div>
+        {{ form.text.label }} {{ form.text() }}
+    </div>
+    <div>
+        {{ form.author.label }} {{ form.author() }}
+    </div>
+    <div>
+        <input type="submit" value="Сохранить">
+    </div>
+</form>
 {% endblock %}

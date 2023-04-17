@@ -16,6 +16,7 @@ def create_app():
     admin.init_app(app)
 
     app.add_url_rule("/", view_func=views.index_page)
-    app.add_url_rule("/post/<int:post_id>", view_func=views.post_page)
+    app.add_url_rule("/post/<int:post_id>", view_func=views.post_page,
+                     methods=['GET', 'POST'])
 
     return app
