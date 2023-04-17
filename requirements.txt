@@ -1,0 +1,6 @@
+flask
+flask-migrate
+flask-admin
+flask-sqlalchemy
+flask-wtf
+sqlalchemy==1.4.*
